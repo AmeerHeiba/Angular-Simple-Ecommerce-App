@@ -1,0 +1,20 @@
+<div class="card mb-3" style="width: 18rem;">
+    <img [src]="product.images[0]" class="card-img-top" alt="{{ product.title }}">
+    <div class="card-body">
+      <h5 class="card-title">{{ product.title }}</h5>
+      <p class="card-text">{{ product.description }}</p>
+      <p class="card-text">{{ product.price }} EGP</p>
+      <p class="card-text {{ getStockClass() }}">
+        {{ getStockStatus() }}
+      </p>
+      <p class="card-text">
+        Rating: 
+        <ng-container *ngFor="let star of [].constructor(5)">
+          <i class="fa" [ngClass]="star < product.rating ? 'fa-star' : 'fa-star-o'"></i>
+        </ng-container>
+      </p>
+      <a routerLink="/product/{{ product.id }}" class="btn btn-primary">View Details</a>
+      <button class="btn btn-success">Add to Cart</button>
+    </div>
+  </div>
+  

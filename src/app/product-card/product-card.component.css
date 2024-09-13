@@ -1,0 +1,14 @@
+.card {
+    border: 1px solid #e0e0e0;
+  }
+  .card img {
+    height: 200px;
+    object-fit: cover;
+  }
+  .text-danger {
+    color: red;
+  }
+  .text-success {
+    color: green;
+  }
+  
