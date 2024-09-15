@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NavComponent } from './nav/nav.component'; // Import NavComponent
+import { NavComponent } from './nav/nav.component';
+import { provideHttpClient } from '@angular/common/http'; // Import HttpClient provider
 
 @Component({
   selector: 'app-root',

@@ -1,1 +1,177 @@
-<p>register works!</p>
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow p-4 mb-5 bg-white rounded" style="width: 60%;">
+      <div class="card-body">
+        <h2 class="card-title text-center mb-4">Register</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="form-group mb-3">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              formControlName="email"
+              class="form-control"
+              placeholder="Enter your email"
+            />
+            <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid" class="text-danger mt-1">
+              <p *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</p>
+              <p *ngIf="registerForm.get('email')?.errors?.['email']">Invalid email format.</p>
+            </div>
+          </div>
+  
+          <div class="form-group mb-3">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              class="form-control"
+              placeholder="Enter your name"
+            />
+            <div *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid" class="text-danger mt-1">
+              <p *ngIf="registerForm.get('name')?.errors?.['required']">Name is required.</p>
+            </div>
+          </div>
+  
+          <div class="form-group mb-3">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              formControlName="username"
+              class="form-control"
+              placeholder="Enter your username"
+            />
+            <div *ngIf="registerForm.get('username')?.touched && registerForm.get('username')?.invalid" class="text-danger mt-1">
+              <p *ngIf="registerForm.get('username')?.errors?.['required']">Username is required.</p>
+              <p *ngIf="registerForm.get('username')?.errors?.['pattern']">Username must not contain spaces.</p>
+            </div>
+          </div>
+  
+          <div class="form-group mb-3">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              formControlName="password"
+              class="form-control"
+              placeholder="Enter your password"
+            />
+            <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid" class="text-danger mt-1">
+              <p *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</p>
+              <p *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters long.</p>
+              <p *ngIf="registerForm.get('password')?.errors?.['pattern']">
+                Password must contain at least one uppercase, one lowercase, one digit, and one special character.
+              </p>
+            </div>
+          </div>
+  
+          <div class="form-group mb-3">
+            <label for="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              formControlName="confirmPassword"
+              class="form-control"
+              placeholder="Re-enter your password"
+            />
+            <div *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.invalid" class="text-danger mt-1">
+              <p *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">Confirmation password is required.</p>
+            </div>
+            <div *ngIf="registerForm.errors?.['passwordMismatch'] && registerForm.get('confirmPassword')?.touched" class="text-danger mt-1">
+              <p>Passwords do not match.</p>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+         <!-- Form Array for Addresses -->
+         <div formArrayName="addresses">
+            <div *ngFor="let address of addresses.controls; let i = index" [formGroupName]="i" class="address-section mb-3">
+              <h5>Address {{ i + 1 }}</h5>
+  
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="address-{{i}}">Address</label>
+                    <input
+                      type="text"
+                      id="address-{{i}}"
+                      formControlName="address"
+                      class="form-control"
+                      placeholder="Enter address"
+                    />
+                    <div *ngIf="address.get('address')?.touched && address.get('address')?.invalid" class="text-danger">
+                      Address is required.
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="street-{{i}}">Street</label>
+                    <input
+                      type="text"
+                      id="street-{{i}}"
+                      formControlName="street"
+                      class="form-control"
+                      placeholder="Enter street"
+                    />
+                    <div *ngIf="address.get('street')?.touched && address.get('street')?.invalid" class="text-danger">
+                      Street is required.
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="country-{{i}}">Country</label>
+                    <input
+                      type="text"
+                      id="country-{{i}}"
+                      formControlName="country"
+                      class="form-control"
+                      placeholder="Enter country"
+                    />
+                    <div *ngIf="address.get('country')?.touched && address.get('country')?.invalid" class="text-danger">
+                      Country is required.
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="city-{{i}}">City</label>
+                    <input
+                      type="text"
+                      id="city-{{i}}"
+                      formControlName="city"
+                      class="form-control"
+                      placeholder="Enter city"
+                    />
+                    <div *ngIf="address.get('city')?.touched && address.get('city')?.invalid" class="text-danger">
+                      City is required.
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Button to remove address -->
+              <button type="button" class="btn btn-danger mt-2" (click)="removeAddress(i)" *ngIf="addresses.length > 1">
+                Remove Address
+              </button>
+  
+              <hr />
+            </div>
+          </div>
+  
+          <!-- Button to add new address -->
+          <button type="button" class="btn btn-secondary mb-3" (click)="addAddress()">Add Another Address</button>
+  
+          </div>
+          
+  
+          <button type="submit" class="btn btn-primary w-100" [disabled]="registerForm.invalid">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

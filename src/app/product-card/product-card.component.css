@@ -1,14 +1,106 @@
-.card {
-    border: 1px solid #e0e0e0;
+/* Card container */
+.product-card {
+  width: 100%; /* Make the card responsive */
+  max-width: 450px; /* Set a maximum width */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for modern look */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden; /* Prevents image overflow */
+}
+
+.product-card:hover {
+  transform: translateY(-10px); /* Slight hover animation */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+
+/* Image styling */
+.product-img {
+  height: 200px; /* Set a fixed height for images */
+  object-fit: cover; /* Ensure image doesn't stretch */
+  border-bottom: 1px solid #ddd; /* Separate image and content */
+}
+
+/* Card body styling */
+.card-body {
+  padding: 15px;
+  background-color: #f9f9f9; /* Light background */
+}
+
+/* Title styling */
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Price styling */
+.card-text {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Stock status styling */
+.stock-status {
+  font-weight: bold;
+}
+
+/* Modern color palette */
+.text-danger {
+  color: #e74c3c !important; /* Modern red */
+}
+
+.text-success {
+  color: #27ae60 !important; /* Modern green */
+}
+
+/* Rating stars */
+.fa-star, .fa-star-o {
+  color: #f1c40f; /* Gold stars for rating */
+  font-size: 1.2rem;
+}
+
+/* Button styling */
+.btn-primary {
+  background-color: #3498db;
+  border-color: #3498db;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+}
+
+.btn-success {
+  background-color: #2ecc71;
+  border-color: #2ecc71;
+}
+
+.btn-success:hover {
+  background-color: #27ae60;
+}
+
+/* Make card responsive on smaller screens */
+@media (max-width: 576px) {
+  .product-card {
+    max-width: 100%; /* Full width on small devices */
   }
-  .card img {
-    height: 200px;
-    object-fit: cover;
+
+  .product-img {
+    height: 150px; /* Smaller image on small screens */
   }
-  .text-danger {
-    color: red;
-  }
-  .text-success {
-    color: green;
-  }
-  
+}
+
+.text-warning {
+  color: #ffc107;
+}
+
+.original-price {
+  color: #888;
+  margin-right: 5px;
+  text-decoration: line-through;
+}
+
+.discounted-price {
+  font-weight: bold;
+  color: green;
+}
+

@@ -6,7 +6,10 @@ export interface Product {
     stock: number;
     rating: number;
     category: string;
-    brand?: string; // Make optional
+    brand?: string; 
     images: string[];
+    thumbnail: string;
+    availabilityStatus: string;
+    discountPercentage: number;
   }
   

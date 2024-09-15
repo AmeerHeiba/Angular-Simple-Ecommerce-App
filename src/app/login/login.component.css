@@ -1,0 +1,17 @@
+button{
+    margin: 25px auto;
+    
+}
+
+@media (max-width: 768px) {
+    .card {
+      width: 90% !important; /* Takes more space on smaller screens */
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .card {
+      width: 60% !important;
+    }
+  }
+  

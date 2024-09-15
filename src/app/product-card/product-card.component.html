@@ -1,20 +1,16 @@
-<div class="card mb-3" style="width: 18rem;">
-    <img [src]="product.images[0]" class="card-img-top" alt="{{ product.title }}">
-    <div class="card-body">
-      <h5 class="card-title">{{ product.title }}</h5>
-      <p class="card-text">{{ product.description }}</p>
-      <p class="card-text">{{ product.price }} EGP</p>
-      <p class="card-text {{ getStockClass() }}">
-        {{ getStockStatus() }}
-      </p>
-      <p class="card-text">
-        Rating: 
-        <ng-container *ngFor="let star of [].constructor(5)">
-          <i class="fa" [ngClass]="star < product.rating ? 'fa-star' : 'fa-star-o'"></i>
-        </ng-container>
-      </p>
-      <a routerLink="/product/{{ product.id }}" class="btn btn-primary">View Details</a>
-      <button class="btn btn-success">Add to Cart</button>
-    </div>
+<div class="card product-card mb-3">
+  <img [src]="product.thumbnail" class="card-img-top product-img" alt="{{ product.title }}">
+  <div class="card-body">
+    <h5 class="card-title">{{ product.title }}</h5>
+    <p class="card-text">{{ product.description}}</p>
+    <p class="card-text" [innerHTML]="product.price | discount:product.discountPercentage"></p>
+    <p class="stock-status" [ngClass]="getStockClass()">{{ getStockStatus() }}</p>
+    <p class="rating">
+      <ng-container *ngFor="let isFilled of product.rating | starRating">
+        <img [src]="isFilled ? 'assets/images/276020.png' : 'assets/images/neon-star.png'" alt="star" width="20" height="20">
+      </ng-container>
+    </p>
+    <a routerLink="/product/{{ product.id }}" class="btn btn-primary">View Details</a>
+    <button class="btn btn-success">Add to Cart</button>
   </div>
-  
+</div>
